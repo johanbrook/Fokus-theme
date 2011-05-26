@@ -1,4 +1,4 @@
-		<div class="footer" role="contentinfo"><?php dynamic_sidebar( 'footer' ); ?></div><!-- .footer -->
+		<footer class="footer" role="contentinfo"><?php dynamic_sidebar( 'footer' ); ?></footer><!-- .footer -->
 	</div><!-- .evil-wrapper -->
 
 	<?php wp_footer(); ?>

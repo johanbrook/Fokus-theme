@@ -1,18 +1,18 @@
 		<?php get_header();
 		if ( is_front_page() && is_active_sidebar( 'front-top' ) ): ?>
-		<div class="front-top">
+		<section class="front-top">
 			<?php dynamic_sidebar( 'front-top' ); ?>
-		</div>
+		</section>
 		<?php endif; ?>
 		<?php if ( is_front_page() && is_active_sidebar( 'front-main' ) ): ?>
-			<div class="front-main">
+			<section class="front-main">
 				<?php dynamic_sidebar( 'front-main' ); ?>
-			</div>
+			</section>
 		<?php
 		else:
 			if ( have_posts() ) :
 				$heading_tag = ($heading_tag == 'h1' ? 'h2' : 'h1');
-				?><div class="hfeed" role="main">
+				?><section class="hfeed" role="main">
 					<?php if ( is_archive() ): ?>
 						<div class="cat-info">
 							<?php if ( function_exists( 'fokus_taxonomy_image' ) ):
@@ -26,7 +26,7 @@
 				while ( have_posts() ) :
 					the_post();
 					?>
-					<div role="article" id="post-<?php the_ID(); ?>" <?php post_class( is_single() ? 'single' : '' ); ?>>
+					<article role="article" id="post-<?php the_ID(); ?>" <?php post_class( is_single() ? 'single' : '' ); ?>>
 						<?php
 							// Post thumbnails
 							if ( has_post_thumbnail() ):
@@ -39,6 +39,8 @@
 								endif;
 							endif;
 						?>
+						
+						<header>
 						<<?php echo $heading_tag; ?> class="entry-title">
 							<a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
 						</<?php echo $heading_tag; ?>>
@@ -55,12 +57,14 @@
 								?>
 							</span>
 							<span class="published">
-								<span class="value-title" title="<?php esc_attr_e(get_the_date('c')); ?>">
+								<time class="value-title" datetime="<?php esc_attr_e(get_the_date('c')); ?>" title="<?php esc_attr_e(get_the_date('c')); ?>" pubdate>
 									<?php echo get_the_date(); ?> <?php the_time(); ?>
-								</span>
+								</time>
 							</span>
 							<?php edit_post_link( __( 'Edit this' ), '<span class="edit">', '</span>' ); ?>
 						</div><!-- .entry-meta -->
+						
+						</header><!-- article header -->
 
 						<?php if ( is_singular() ) : // Only display excerpts for archives and search. ?>
 							<div class="entry-content">
@@ -83,11 +87,13 @@
 								<?php the_excerpt(); ?>
 							</div><!-- .entry-summary -->
 						<?php endif; ?>
-					</div>
+					</article>
 
 					<?php
 				endwhile;
-				?></div></div><!-- .hfeed .posts --><?php
+				?></div><!-- .posts -->
+				
+				</section><!-- .hfeed .posts --><?php
 			endif;
 		endif;
 		?>

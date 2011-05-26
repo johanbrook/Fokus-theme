@@ -19,13 +19,21 @@
 		if ( $paged >= 2 || $page >= 2 )
 			echo ' | ' . sprintf( __( 'Page %s', 'fokus' ), max( $paged, $page ) );
 	?></title>
+	
+	<!--[if lt IE 9]>
+	<script src="<?php echo FOKUS_THEMEURL;?>/js/html5.js"></script>
+	<![endif]-->
+	
 	<?php wp_head(); ?>
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
 </head>
 <body <?php body_class(); ?>>
 	<div class="evil-wrapper">
-		<div class="header" role="banner">
+		<header class="header" role="banner">
 			<div class="site-info">
+				
+				<hgroup>
+				
 				<?php $heading_tag = ( is_home() || is_front_page() || !is_singular() ) ? 'h1' : 'div'; ?>
 				<<?php echo $heading_tag; ?> class="title <?php if ( get_header_image() ) : echo('header-image'); else : echo('no-header-image'); endif ?>">
 					<a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
@@ -36,9 +44,13 @@
 						<?php endif; ?>
 					</a>
 				</<?php echo $heading_tag; ?>>
-				<div id="site-description"><?php bloginfo( 'description' ); ?></div>
+				<h2 id="site-description"><?php bloginfo( 'description' ); ?></h2>
+				
+				</hgroup>
+				
 			</div><!-- .site-info -->
-			<div class="site-menu" role="navigation">
+			
+			<nav class="site-menu" role="navigation">
 				<?php wp_nav_menu( array( 'container_class' => 'primary-menu', 'menu_class' => 'primary-menu', 'theme_location' => 'primary', 'depth' => 1 ) ); ?>
 				<?php
 					$sec_menu = wp_nav_menu( array( 'container' => FALSE, 'theme_location' => 'secondary', 'depth' => 1, 'fallback_cb' => FALSE, 'echo' => FALSE ) );
@@ -49,6 +61,6 @@
 					<?php dynamic_sidebar( 'secondary-menu' ); ?>
 				</div>
 				<?php endif; ?>
-			</div><!-- .menu -->
+			</nav><!-- .menu -->
 			<?php get_search_form(); ?>
-		</div><!-- .header -->
+		</header><!-- .header -->

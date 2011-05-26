@@ -1,5 +1,5 @@
 <?php if (get_comment_pages_count()): ?>
-			<div id="comments">
+			<section id="comments">
 <?php if ( post_password_required() ) : ?>
 				<p class="nopassword"><?php _e( 'This post is password protected. Enter the password to view any comments.', 'fokus' ); ?></p>
 			</div><!-- #comments -->
@@ -38,7 +38,7 @@
 
 <?php endif; ?>
 
-			</div><!-- #comments -->
+			</section><!-- #comments -->
 <?php endif; ?>
 
 <?php
